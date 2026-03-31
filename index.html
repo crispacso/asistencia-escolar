@@ -4,7 +4,6 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Sistema de Asistencia Escolar</title>
-<!-- Firebase v9 compat -->
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
@@ -16,15 +15,7 @@ input,select,textarea,button{font-family:inherit}
 .fade{animation:fadeIn .2s ease}
 @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 .hidden{display:none!important}
-
-/* ── Variables de color ── */
-:root{
-  --blue:#3B5BDB;--blue-dk:#2F4AC0;
-  --green:#2F9E44;--orange:#E67700;--red:#C92A2A;
-  --teal:#0CA678;--gray:#F8F9FA;--border:#DEE2E6;--muted:#868E96
-}
-
-/* ── Shared components ── */
+:root{--blue:#3B5BDB;--green:#2F9E44;--orange:#E67700;--red:#C92A2A;--teal:#0CA678;--gray:#F8F9FA;--border:#DEE2E6;--muted:#868E96}
 .inp{width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;outline:none;transition:border .15s}
 .inp:focus{border-color:var(--blue)}
 .btn{border:none;border-radius:8px;padding:10px 20px;font-size:14px;cursor:pointer;font-weight:600;transition:opacity .15s}
@@ -39,64 +30,42 @@ input,select,textarea,button{font-family:inherit}
 .card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:12px}
 .pill{padding:2px 10px;border-radius:12px;font-size:12px;font-weight:600;display:inline-block;color:#fff}
 .pill-blue{background:var(--blue)}.pill-teal{background:var(--teal)}
-.error{color:var(--red);font-size:13px;margin-bottom:12px}
+.error{color:var(--red);font-size:13px;margin-bottom:10px}
 table{width:100%;border-collapse:collapse}
 th{text-align:left;padding:10px 12px;font-size:12px;color:var(--muted);font-weight:600;background:var(--gray)}
 td{padding:10px 12px;font-size:13px;border-top:1px solid var(--border)}
 label{font-size:13px;font-weight:600;display:block;margin-bottom:5px}
-
-/* ── NAVBAR ── */
-.navbar{height:56px;color:#fff;padding:0 24px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
-.navbar-teacher{background:var(--blue)}
-.navbar-student{background:var(--teal)}
-.navbar-brand{display:flex;align-items:center;gap:12px}
+.navbar{height:56px;color:#fff;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.navbar-teacher{background:var(--blue)}.navbar-student{background:var(--teal)}
+.navbar-brand{display:flex;align-items:center;gap:10px}
 .navbar-brand strong{font-size:16px}
-.navbar-brand span{font-size:13px;opacity:.8}
 .btn-logout{background:rgba(255,255,255,.18);border:none;color:#fff;padding:5px 14px;border-radius:8px;cursor:pointer;font-size:13px}
-
-/* ── TABS ── */
 .tabs{background:#fff;border-bottom:1px solid var(--border);display:flex;padding:0 16px;overflow-x:auto}
-.tab-btn{background:none;border:none;padding:14px 16px;cursor:pointer;font-size:13px;font-weight:600;white-space:nowrap;border-bottom:3px solid transparent;transition:color .15s}
-
-/* ── CONTENT ── */
+.tab-btn{background:none;border:none;padding:14px 16px;cursor:pointer;font-size:13px;font-weight:600;white-space:nowrap;border-bottom:3px solid transparent}
 .content{padding:24px 20px;max-width:960px;margin:0 auto}
 h3{margin-bottom:16px;color:#212529;font-size:18px}
 h4{font-size:15px;margin-bottom:12px;color:#495057}
-
-/* ── GRID helpers ── */
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.grid-3b{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
 .grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px}
-@media(max-width:700px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}}
-
-/* ── LOGIN ── */
+@media(max-width:700px){.grid-2,.grid-3,.grid-3b,.grid-4{grid-template-columns:1fr}}
 #view-login{min-height:100vh;background:linear-gradient(135deg,#3B5BDB 0%,#0CA678 100%);display:flex;align-items:center;justify-content:center;padding:16px}
-.login-box{background:#fff;border-radius:20px;padding:40px 36px;width:100%;max-width:400px;box-shadow:0 24px 64px rgba(0,0,0,.22)}
+.login-box{background:#fff;border-radius:20px;padding:40px 36px;width:100%;max-width:420px;box-shadow:0 24px 64px rgba(0,0,0,.22)}
 .login-logo{text-align:center;margin-bottom:32px}
 .login-logo .emoji{font-size:52px;margin-bottom:10px}
 .login-logo h2{font-size:22px;color:#212529}
 .login-logo p{font-size:13px;color:var(--muted);margin-top:4px}
-.login-demo{margin-top:24px;background:var(--gray);border-radius:10px;padding:14px;font-size:12px;color:var(--muted);line-height:1.8}
-.login-demo strong{color:#495057}
-.login-demo-btns{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
-.login-demo-btn{background:#e9ecef;border:none;border-radius:6px;padding:3px 8px;font-size:11px;cursor:pointer;color:#495057}
-
-/* ── LOADING ── */
+.btn-google{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:13px;background:#fff;border:1.5px solid var(--border);border-radius:10px;font-size:15px;font-weight:600;color:#444;cursor:pointer;transition:background .15s,box-shadow .15s}
+.btn-google:hover{background:#f8f9fa;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.divider{display:flex;align-items:center;gap:12px;margin:20px 0;color:var(--muted);font-size:12px}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border)}
 #view-loading{display:flex;align-items:center;justify-content:center;height:100vh;font-size:16px;color:var(--muted)}
-
-/* ── STATS CARD ── */
 .stat-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center}
-.stat-card .emoji{font-size:28px}
-.stat-card .value{font-size:28px;font-weight:700}
-.stat-card .label{font-size:12px;color:var(--muted)}
-
-/* ── SETUP BANNER ── */
-.setup-banner{background:#fff3bf;border:1px solid #f59f00;border-radius:10px;padding:14px 18px;margin-bottom:20px;font-size:13px;color:#664d03}
 </style>
 </head>
 <body>
 
-<!-- LOADING -->
 <div id="view-loading">⏳ Cargando sistema...</div>
 
 <!-- LOGIN -->
@@ -107,27 +76,50 @@ h4{font-size:15px;margin-bottom:12px;color:#495057}
       <h2>Sistema Educativo</h2>
       <p>Asistencia · Materiales · Historial</p>
     </div>
-    <label for="login-user">Email</label>
-    <input id="login-user" class="inp" placeholder="docente@escuela.com" style="margin-bottom:12px" />
-    <label for="login-pass">Contraseña</label>
-    <input id="login-pass" type="password" class="inp" placeholder="••••••" style="margin-bottom:8px" />
-    <div id="login-err" class="error hidden"></div>
-    <button id="login-btn" class="btn btn-blue" style="width:100%;padding:12px;font-size:15px;margin-top:8px">Ingresar →</button>
-    <div class="login-demo">
-      <strong>💡 Primer acceso:</strong><br/>
-      El docente debe ser creado desde Firebase Console en Authentication → Users → Add user.<br/>
-      Los alumnos son creados desde el Panel Docente.
+
+    <button class="btn-google" id="btn-google-login">
+      <svg width="20" height="20" viewBox="0 0 48 48">
+        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+        <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+        <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+      </svg>
+      Ingresar con Google
+    </button>
+
+    <div class="divider">o acceso de respaldo</div>
+
+    <div id="local-form">
+      <label>Email</label>
+      <input id="login-user" class="inp" placeholder="backup@escuela.com" style="margin-bottom:12px"/>
+      <label>Contraseña</label>
+      <input id="login-pass" type="password" class="inp" placeholder="••••••" style="margin-bottom:8px"/>
+      <div id="login-err" class="error hidden"></div>
+      <button id="login-btn" class="btn btn-blue" style="width:100%;padding:11px;font-size:14px;margin-top:6px">Ingresar con contraseña</button>
+      <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:10px">Solo para cuentas locales de emergencia</p>
     </div>
+    <div id="google-err" class="error hidden" style="margin-top:12px;text-align:center"></div>
   </div>
 </div>
 
-<!-- TEACHER DASHBOARD -->
+<!-- NOT AUTHORIZED -->
+<div id="view-noauth" class="hidden" style="min-height:100vh;background:linear-gradient(135deg,#3B5BDB 0%,#0CA678 100%);display:flex;align-items:center;justify-content:center;padding:16px">
+  <div style="background:#fff;border-radius:20px;padding:40px 36px;width:100%;max-width:420px;text-align:center;box-shadow:0 24px 64px rgba(0,0,0,.22)">
+    <div style="font-size:52px;margin-bottom:16px">🚫</div>
+    <h2 style="font-size:20px;margin-bottom:10px;color:#212529">Acceso no autorizado</h2>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:8px">Tu cuenta <strong id="noauth-email"></strong> no está registrada.</p>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:24px">Pedile al docente que registre tu Gmail en el sistema.</p>
+    <button onclick="auth.signOut()" class="btn btn-blue" style="width:100%;padding:12px">← Volver</button>
+  </div>
+</div>
+
+<!-- TEACHER -->
 <div id="view-teacher" class="hidden">
   <nav class="navbar navbar-teacher">
     <div class="navbar-brand">
       <span style="font-size:20px">🏫</span>
       <strong>Panel Docente</strong>
-      <span id="t-name"></span>
+      <span id="t-name" style="font-size:13px;opacity:.8"></span>
     </div>
     <button class="btn-logout" id="t-logout">Salir</button>
   </nav>
@@ -139,8 +131,7 @@ h4{font-size:15px;margin-bottom:12px;color:#495057}
     <button class="tab-btn" data-tab="cursos" style="color:var(--muted)">📚 Cursos</button>
   </div>
   <div class="content">
-
-    <!-- TAB: ASISTENCIA -->
+    <!-- ASISTENCIA -->
     <div id="t-tab-asistencia" class="fade">
       <h3>Registro de Asistencia</h3>
       <div style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap">
@@ -151,8 +142,7 @@ h4{font-size:15px;margin-bottom:12px;color:#495057}
       <h4 style="margin-top:24px">Resumen acumulado</h4>
       <div id="att-summary" class="grid-3" style="margin-top:8px"></div>
     </div>
-
-    <!-- TAB: MATERIALES -->
+    <!-- MATERIALES -->
     <div id="t-tab-materiales" class="fade hidden">
       <h3>Compartir Materiales</h3>
       <div class="card">
@@ -167,58 +157,53 @@ h4{font-size:15px;margin-bottom:12px;color:#495057}
       </div>
       <div id="files-list"></div>
     </div>
-
-    <!-- TAB: ALUMNOS -->
+    <!-- ALUMNOS -->
     <div id="t-tab-alumnos" class="fade hidden">
       <h3>Gestión de Alumnos</h3>
       <div class="card">
-        <h4>Agregar alumno</h4>
-        <div class="grid-4" style="margin-bottom:12px">
+        <h4>Registrar alumno por Gmail</h4>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:14px">El alumno entrará al sistema usando su cuenta de Google. Solo necesitás cargar su Gmail y asignarlo a un curso.</p>
+        <div class="grid-3b" style="margin-bottom:12px">
           <div><label>Nombre completo *</label><input id="s-name" class="inp" placeholder="Juan Pérez"/></div>
-          <div><label>Email *</label><input id="s-email" class="inp" placeholder="juan@email.com"/></div>
-          <div><label>Contraseña *</label><input id="s-pass" class="inp" placeholder="mínimo 6 caracteres"/></div>
+          <div><label>Gmail del alumno *</label><input id="s-email" class="inp" placeholder="juan@gmail.com"/></div>
           <div><label>Curso</label><select id="s-course" class="inp"></select></div>
         </div>
         <div id="s-add-err" class="error hidden"></div>
-        <button id="s-add" class="btn btn-green">+ Agregar alumno</button>
+        <button id="s-add" class="btn btn-green">+ Registrar alumno</button>
       </div>
       <div id="students-list"></div>
     </div>
-
-    <!-- TAB: HISTORIAL -->
+    <!-- HISTORIAL -->
     <div id="t-tab-historial" class="fade hidden">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px">
         <h3 style="margin:0">Historial de Ingresos</h3>
-        <input id="h-search" class="inp" placeholder="🔍 Buscar por nombre..." style="width:260px;font-size:13px"/>
+        <input id="h-search" class="inp" placeholder="🔍 Buscar..." style="width:240px;font-size:13px"/>
       </div>
       <div class="card"><div id="history-table"></div></div>
     </div>
-
-    <!-- TAB: CURSOS -->
+    <!-- CURSOS -->
     <div id="t-tab-cursos" class="fade hidden">
       <h3>Gestión de Cursos</h3>
-      <p style="font-size:13px;color:var(--muted);margin-bottom:16px">Editá el nombre de cada curso.</p>
       <div class="card" style="margin-bottom:16px">
         <h4>Agregar nuevo curso</h4>
         <div style="display:flex;gap:10px;align-items:flex-end">
-          <div style="flex:1"><label>Nombre del curso *</label><input id="nc-name" class="inp" placeholder="Ej: 2°A - Matemática"/></div>
+          <div style="flex:1"><label>Nombre *</label><input id="nc-name" class="inp" placeholder="Ej: 2°A - Matemática"/></div>
           <button id="nc-add" class="btn btn-blue">+ Agregar</button>
         </div>
       </div>
       <div id="courses-list"></div>
     </div>
-
   </div>
 </div>
 
-<!-- STUDENT DASHBOARD -->
+<!-- STUDENT -->
 <div id="view-student" class="hidden">
   <nav class="navbar navbar-student">
     <div class="navbar-brand">
       <span style="font-size:20px">🎓</span>
       <strong>Portal del Alumno</strong>
-      <span id="s-nav-name"></span>
-      <span id="s-nav-course" style="font-size:12px;opacity:.65"></span>
+      <span id="s-nav-name" style="font-size:13px;opacity:.8"></span>
+      <span id="s-nav-course" style="font-size:12px;opacity:.6"></span>
     </div>
     <button class="btn-logout" id="s-logout">Salir</button>
   </nav>
@@ -228,8 +213,6 @@ h4{font-size:15px;margin-bottom:12px;color:#495057}
     <button class="tab-btn" data-tab="historial" style="color:var(--muted)">🕐 Mis Ingresos</button>
   </div>
   <div class="content">
-
-    <!-- TAB: MI ASISTENCIA -->
     <div id="s-tab-asistencia" class="fade">
       <h3 id="s-att-title">Mi Asistencia</h3>
       <div class="card" style="text-align:center;padding:36px;margin-bottom:16px">
@@ -239,31 +222,19 @@ h4{font-size:15px;margin-bottom:12px;color:#495057}
       </div>
       <div id="s-stats" class="grid-3" style="margin-bottom:16px"></div>
       <div id="s-pct-card"></div>
-      <div class="card" style="margin-top:16px">
-        <h4>Detalle por fecha</h4>
-        <div id="s-att-detail"></div>
-      </div>
+      <div class="card" style="margin-top:16px"><h4>Detalle por fecha</h4><div id="s-att-detail"></div></div>
     </div>
-
-    <!-- TAB: MATERIALES -->
     <div id="s-tab-materiales" class="fade hidden">
-      <h3>Materiales del Curso</h3>
-      <div id="s-files-list"></div>
+      <h3>Materiales del Curso</h3><div id="s-files-list"></div>
     </div>
-
-    <!-- TAB: HISTORIAL -->
     <div id="s-tab-historial" class="fade hidden">
       <h3>Mis Ingresos al Sistema</h3>
       <div class="card"><div id="s-history-table"></div></div>
     </div>
-
   </div>
 </div>
 
 <script>
-// ═══════════════════════════════════════════════════════════
-// FIREBASE CONFIG — TUS CREDENCIALES
-// ═══════════════════════════════════════════════════════════
 const firebaseConfig = {
   apiKey: "AIzaSyA1OsDZwxKwpx_lewkomytjiDq0Hbabmyk",
   authDomain: "asitenciahibrida.firebaseapp.com",
@@ -273,35 +244,25 @@ const firebaseConfig = {
   appId: "1:689300475391:web:40393461417b5bdd2dabca"
 };
 
+// ── Emails docentes (agregá más si necesitás) ──
+const TEACHER_EMAILS = [
+  "sistemasoperativosices@gmail.com",
+];
+
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db   = firebase.firestore();
+const googleProvider = new firebase.auth.GoogleAuthProvider();
 
-// ═══════════════════════════════════════════════════════════
-// HELPERS
-// ═══════════════════════════════════════════════════════════
 const $ = id => document.getElementById(id);
 const todayStr = () => new Date().toISOString().split("T")[0];
-const fmtDT = ts => {
-  if(!ts) return "—";
-  const d = ts.toDate ? ts.toDate() : new Date(ts);
-  return d.toLocaleString("es-AR",{dateStyle:"short",timeStyle:"short"});
-};
-const fmtD = s => new Date(s+"T12:00:00").toLocaleDateString("es-AR");
+const fmtDT = ts => { if(!ts) return "—"; const d=ts.toDate?ts.toDate():new Date(ts); return d.toLocaleString("es-AR",{dateStyle:"short",timeStyle:"short"}); };
+const fmtD  = s  => new Date(s+"T12:00:00").toLocaleDateString("es-AR");
+function show(id){ ['view-loading','view-login','view-teacher','view-student','view-noauth'].forEach(v=>$(v).classList.add('hidden')); $(id).classList.remove('hidden'); }
 
-function show(id){ document.querySelectorAll('#view-loading,#view-login,#view-teacher,#view-student').forEach(el=>el.classList.add('hidden')); $(id).classList.remove('hidden'); }
+let currentUser=null, userDoc=null, courses=[], allUsers=[];
 
-// ═══════════════════════════════════════════════════════════
-// STATE
-// ═══════════════════════════════════════════════════════════
-let currentUser = null;  // Firebase auth user
-let userDoc     = null;  // Firestore /users/{uid}
-let courses     = [];    // cache
-let allUsers    = [];    // cache
-
-// ═══════════════════════════════════════════════════════════
-// AUTH LISTENER — entry point
-// ═══════════════════════════════════════════════════════════
+// ── AUTH ──
 auth.onAuthStateChanged(async user => {
   if(!user){ show('view-login'); return; }
   currentUser = user;
@@ -309,85 +270,74 @@ auth.onAuthStateChanged(async user => {
     const snap = await db.collection('users').doc(user.uid).get();
     if(snap.exists){
       userDoc = snap.data();
+      // Sync courseId in case teacher moved the student
+      if(userDoc.role==='student'){
+        const reg=await db.collection('registeredStudents').where('email','==',user.email.toLowerCase()).limit(1).get();
+        if(!reg.empty){
+          const newCid=reg.docs[0].data().courseId;
+          if(newCid!==userDoc.courseId){ userDoc.courseId=newCid; await db.collection('users').doc(user.uid).update({courseId:newCid}); }
+        } else {
+          $('noauth-email').textContent=user.email; show('view-noauth'); return;
+        }
+      }
     } else {
-      // First time: check if teacher email matches config
-      const isTeacher = user.email === TEACHER_EMAIL;
-      userDoc = { uid: user.uid, email: user.email, name: user.displayName || user.email, role: isTeacher ? 'teacher' : 'student', courseId: null };
+      const email=user.email.toLowerCase();
+      let role='unknown', courseId=null;
+      if(TEACHER_EMAILS.map(e=>e.toLowerCase()).includes(email)){
+        role='teacher';
+      } else {
+        const reg=await db.collection('registeredStudents').where('email','==',email).limit(1).get();
+        if(!reg.empty){ role='student'; courseId=reg.docs[0].data().courseId; }
+      }
+      if(role==='unknown'){ $('noauth-email').textContent=user.email; show('view-noauth'); return; }
+      userDoc={uid:user.uid,email:user.email,name:user.displayName||user.email,role,courseId,photoURL:user.photoURL||null};
       await db.collection('users').doc(user.uid).set(userDoc);
     }
-    // Log login
-    await db.collection('loginHistory').add({ userId: user.uid, email: user.email, name: userDoc.name, role: userDoc.role, courseId: userDoc.courseId||null, timestamp: firebase.firestore.FieldValue.serverTimestamp() });
-    // Route
-    if(userDoc.role === 'teacher') initTeacher();
+    await db.collection('loginHistory').add({userId:user.uid,email:user.email,name:userDoc.name,role:userDoc.role,courseId:userDoc.courseId||null,photoURL:user.photoURL||null,timestamp:firebase.firestore.FieldValue.serverTimestamp()});
+    if(userDoc.role==='teacher') initTeacher();
     else initStudent();
-  } catch(e){ console.error(e); alert("Error al cargar el perfil: "+e.message); }
+  } catch(e){ console.error(e); alert("Error: "+e.message); }
 });
 
-// Email del docente principal (se usará para asignar rol teacher automáticamente)
-const TEACHER_EMAIL = "sistemasoperativosices@gmail.com";
-
-// ═══════════════════════════════════════════════════════════
-// LOGIN
-// ═══════════════════════════════════════════════════════════
-$('login-btn').onclick = loginUser;
-$('login-pass').addEventListener('keydown', e => e.key==='Enter' && loginUser());
-
-async function loginUser(){
-  const email = $('login-user').value.trim();
-  const pass  = $('login-pass').value;
-  const errEl = $('login-err');
-  errEl.classList.add('hidden');
-  if(!email||!pass){ errEl.textContent="Completá email y contraseña."; errEl.classList.remove('hidden'); return; }
-  try {
-    await auth.signInWithEmailAndPassword(email, pass);
-  } catch(e){
-    errEl.textContent = e.code==='auth/user-not-found'||e.code==='auth/wrong-password'||e.code==='auth/invalid-credential'
-      ? "Email o contraseña incorrectos." : e.message;
-    errEl.classList.remove('hidden');
-  }
+// ── LOGIN ──
+$('btn-google-login').onclick = async () => {
+  const errEl=$('google-err'); errEl.classList.add('hidden');
+  try { await auth.signInWithPopup(googleProvider); }
+  catch(e){ if(e.code!=='auth/popup-closed-by-user'){ errEl.textContent="Error Google: "+e.message; errEl.classList.remove('hidden'); } }
+};
+$('login-btn').onclick = loginLocal;
+$('login-pass').addEventListener('keydown',e=>e.key==='Enter'&&loginLocal());
+async function loginLocal(){
+  const email=$('login-user').value.trim(), pass=$('login-pass').value;
+  const errEl=$('login-err'); errEl.classList.add('hidden');
+  if(!email||!pass){ errEl.textContent='Completá email y contraseña.'; errEl.classList.remove('hidden'); return; }
+  try { await auth.signInWithEmailAndPassword(email,pass); }
+  catch(e){ errEl.textContent=e.code==='auth/invalid-credential'||e.code==='auth/wrong-password'||e.code==='auth/user-not-found'?'Email o contraseña incorrectos.':e.message; errEl.classList.remove('hidden'); }
 }
+$('t-logout').onclick=()=>auth.signOut();
+$('s-logout').onclick=()=>auth.signOut();
 
-$('t-logout').onclick = () => auth.signOut();
-$('s-logout').onclick = () => auth.signOut();
+async function loadCourses(){ const s=await db.collection('courses').orderBy('name').get(); courses=s.docs.map(d=>({id:d.id,...d.data()})); return courses; }
+async function loadAllUsers(){ const s=await db.collection('users').get(); allUsers=s.docs.map(d=>({id:d.id,...d.data()})); return allUsers; }
 
-// ═══════════════════════════════════════════════════════════
-// LOAD COURSES
-// ═══════════════════════════════════════════════════════════
-async function loadCourses(){
-  const snap = await db.collection('courses').orderBy('name').get();
-  courses = snap.docs.map(d=>({id:d.id,...d.data()}));
-  return courses;
-}
-async function loadAllUsers(){
-  const snap = await db.collection('users').get();
-  allUsers = snap.docs.map(d=>({id:d.id,...d.data()}));
-  return allUsers;
-}
-
-// ═══════════════════════════════════════════════════════════
-// ═══════════════════════════════════════════════════════════
-//  TEACHER
-// ═══════════════════════════════════════════════════════════
-// ═══════════════════════════════════════════════════════════
+// ══════════════════════════════════════
+// TEACHER
+// ══════════════════════════════════════
 async function initTeacher(){
   show('view-teacher');
-  $('t-name').textContent = '— '+userDoc.name;
-  await loadCourses();
-  await loadAllUsers();
-  setupTeacherTabs();
-  renderAttendanceTab();
-  populateCourseSelects();
+  const av=currentUser.photoURL?`<img src="${currentUser.photoURL}" style="width:28px;height:28px;border-radius:50%;border:2px solid rgba(255,255,255,.4);vertical-align:middle;margin-right:6px"/>`:'';
+  $('t-name').innerHTML=av+'— '+(userDoc.name||userDoc.email);
+  await loadCourses(); await loadAllUsers();
+  setupTeacherTabs(); renderAttendanceTab(); populateCourseSelects();
 }
 
-// ── TABS ──
 function setupTeacherTabs(){
   $('t-tabs').querySelectorAll('.tab-btn').forEach(btn=>{
-    btn.onclick = () => {
+    btn.onclick=()=>{
       $('t-tabs').querySelectorAll('.tab-btn').forEach(b=>{b.style.color='var(--muted)';b.style.borderBottomColor='transparent';});
       btn.style.color='var(--blue)'; btn.style.borderBottomColor='var(--blue)';
       ['asistencia','materiales','alumnos','historial','cursos'].forEach(t=>$('t-tab-'+t).classList.add('hidden'));
-      const tab = btn.dataset.tab;
-      $('t-tab-'+tab).classList.remove('hidden');
+      const tab=btn.dataset.tab; $('t-tab-'+tab).classList.remove('hidden');
       if(tab==='materiales') renderFilesTab();
       if(tab==='alumnos')    renderStudentsTab();
       if(tab==='historial')  renderHistoryTab();
@@ -397,216 +347,170 @@ function setupTeacherTabs(){
 }
 
 function populateCourseSelects(){
-  ['att-course','f-course','s-course'].forEach(id=>{
-    const el=$(id); if(!el) return;
-    el.innerHTML = courses.map(c=>`<option value="${c.id}">${c.name}</option>`).join('');
-  });
+  ['att-course','f-course','s-course'].forEach(id=>{ const el=$(id); if(!el) return; el.innerHTML=courses.map(c=>`<option value="${c.id}">${c.name}</option>`).join(''); });
 }
 
-// ─────────────────────────────────────────────────────────
-//  ASISTENCIA (teacher)
-// ─────────────────────────────────────────────────────────
-$('att-date').value = todayStr();
-$('att-date').onchange = renderAttendanceTab;
-$('att-course').onchange = renderAttendanceTab;
+$('att-date').value=todayStr();
+$('att-date').onchange=renderAttendanceTab;
+$('att-course').onchange=renderAttendanceTab;
 
 async function renderAttendanceTab(){
-  const cid  = $('att-course').value;
-  const date = $('att-date').value;
+  const cid=$('att-course').value, date=$('att-date').value;
   if(!cid||!date) return;
-  const students = allUsers.filter(u=>u.role==='student'&&u.courseId===cid);
-  // load attendance for this course+date
-  const snap = await db.collection('attendance').where('courseId','==',cid).where('date','==',date).get();
-  const attMap = {};
-  snap.docs.forEach(d=>{ const a=d.data(); attMap[a.studentId]={...a,docId:d.id}; });
-
-  const wrap = $('att-table-wrap');
-  if(students.length===0){ wrap.innerHTML='<p style="color:var(--muted);text-align:center;padding:32px">No hay alumnos en este curso.</p>'; $('att-summary').innerHTML=''; return; }
-
-  wrap.innerHTML = `<table>
-    <thead><tr><th>Alumno</th><th>Email</th><th>Estado</th><th style="text-align:center">Marcar</th></tr></thead>
-    <tbody>${students.map(s=>{
-      const a=attMap[s.uid||s.id];
-      const sc=a?.status==='present'?'var(--green)':a?.status==='absent'?'var(--red)':a?.status==='late'?'var(--orange)':'var(--muted)';
-      const sl=a?.status==='present'?'✅ Presente':a?.status==='absent'?'❌ Ausente':a?.status==='late'?'⏰ Tarde':'— Sin registrar';
-      return `<tr>
-        <td><strong>${s.name}</strong></td>
-        <td style="color:var(--muted)">${s.email}</td>
-        <td><span style="color:${sc};font-weight:600">${sl}</span>${a?`<br><span style="font-size:11px;color:var(--muted)">por ${a.markedBy==='teacher'?'docente':'alumno'}</span>`:''}</td>
-        <td style="text-align:center">
-          <div style="display:flex;gap:4px;justify-content:center">
-            <button class="btn btn-sm btn-green" onclick="markAtt('${s.uid||s.id}','${cid}','${date}','present')">✅</button>
-            <button class="btn btn-sm btn-orange" onclick="markAtt('${s.uid||s.id}','${cid}','${date}','late')">⏰</button>
-            <button class="btn btn-sm btn-red" onclick="markAtt('${s.uid||s.id}','${cid}','${date}','absent')">❌</button>
-          </div>
-        </td>
-      </tr>`;
-    }).join('')}</tbody>
-  </table>`;
-
-  // summary
-  const allAtt = await db.collection('attendance').where('courseId','==',cid).get();
-  const summary = $('att-summary');
-  summary.innerHTML = students.map(s=>{
-    const myA = allAtt.docs.filter(d=>d.data().studentId===(s.uid||s.id));
+  const regSnap=await db.collection('registeredStudents').where('courseId','==',cid).get();
+  const regs=regSnap.docs.map(d=>d.data());
+  const knownStudents=allUsers.filter(u=>u.role==='student'&&u.courseId===cid);
+  const emailsKnown=knownStudents.map(s=>s.email.toLowerCase());
+  const soloReg=regs.filter(r=>!emailsKnown.includes(r.email.toLowerCase()));
+  const students=[...knownStudents,...soloReg.map(r=>({uid:null,email:r.email,name:r.name,courseId:cid,_pending:true}))];
+  const attSnap=await db.collection('attendance').where('courseId','==',cid).where('date','==',date).get();
+  const attMap={};
+  attSnap.docs.forEach(d=>{const a=d.data();attMap[a.studentId]=a;});
+  const wrap=$('att-table-wrap');
+  if(!students.length){wrap.innerHTML='<p style="color:var(--muted);text-align:center;padding:32px">No hay alumnos en este curso.</p>';$('att-summary').innerHTML='';return;}
+  wrap.innerHTML=`<table><thead><tr><th>Alumno</th><th>Gmail</th><th>Estado</th><th style="text-align:center">Marcar</th></tr></thead><tbody>
+  ${students.map(s=>{
+    const key=s.uid||s.email;
+    const a=attMap[key];
+    const sc=a?.status==='present'?'var(--green)':a?.status==='absent'?'var(--red)':a?.status==='late'?'var(--orange)':'var(--muted)';
+    const sl=a?.status==='present'?'✅ Presente':a?.status==='absent'?'❌ Ausente':a?.status==='late'?'⏰ Tarde':'— Sin registrar';
+    const ek=encodeURIComponent(key);
+    return `<tr><td><strong>${s.name}</strong>${s._pending?'<br><span style="font-size:11px;color:var(--muted)">Nunca ingresó</span>':''}</td>
+      <td style="color:var(--muted);font-size:12px">${s.email}</td>
+      <td><span style="color:${sc};font-weight:600">${sl}</span>${a?`<br><span style="font-size:11px;color:var(--muted)">por ${a.markedBy==='teacher'?'docente':'alumno'}</span>`:''}</td>
+      <td style="text-align:center"><div style="display:flex;gap:4px;justify-content:center">
+        <button class="btn btn-sm btn-green"  onclick="markAtt('${ek}','${cid}','${date}','present')">✅</button>
+        <button class="btn btn-sm btn-orange" onclick="markAtt('${ek}','${cid}','${date}','late')">⏰</button>
+        <button class="btn btn-sm btn-red"    onclick="markAtt('${ek}','${cid}','${date}','absent')">❌</button>
+      </div></td></tr>`;
+  }).join('')}</tbody></table>`;
+  const allA=await db.collection('attendance').where('courseId','==',cid).get();
+  $('att-summary').innerHTML=students.map(s=>{
+    const key=s.uid||s.email;
+    const myA=allA.docs.filter(d=>d.data().studentId===key);
     const pr=myA.filter(d=>d.data().status==='present').length;
     const lt=myA.filter(d=>d.data().status==='late').length;
     const ab=myA.filter(d=>d.data().status==='absent').length;
-    return `<div class="card" style="padding:14px">
-      <div style="font-weight:700;font-size:13px;margin-bottom:6px">${s.name}</div>
-      <div style="display:flex;gap:8px;font-size:13px">
-        <span style="color:var(--green)">✅${pr}</span>
-        <span style="color:var(--orange)">⏰${lt}</span>
-        <span style="color:var(--red)">❌${ab}</span>
-      </div>
-    </div>`;
+    return `<div class="card" style="padding:14px"><div style="font-weight:700;font-size:13px;margin-bottom:6px">${s.name}</div>
+      <div style="display:flex;gap:8px;font-size:13px"><span style="color:var(--green)">✅${pr}</span><span style="color:var(--orange)">⏰${lt}</span><span style="color:var(--red)">❌${ab}</span></div></div>`;
   }).join('');
 }
 
-window.markAtt = async (sid,cid,date,status) => {
-  const existing = await db.collection('attendance').where('studentId','==',sid).where('courseId','==',cid).where('date','==',date).get();
-  const data = { studentId:sid, courseId:cid, date, status, markedBy:'teacher', timestamp: firebase.firestore.FieldValue.serverTimestamp() };
-  if(existing.empty) await db.collection('attendance').add(data);
-  else await db.collection('attendance').doc(existing.docs[0].id).update(data);
+window.markAtt=async(sid,cid,date,status)=>{
+  sid=decodeURIComponent(sid);
+  const ex=await db.collection('attendance').where('studentId','==',sid).where('courseId','==',cid).where('date','==',date).get();
+  const data={studentId:sid,courseId:cid,date,status,markedBy:'teacher',timestamp:firebase.firestore.FieldValue.serverTimestamp()};
+  if(ex.empty) await db.collection('attendance').add(data);
+  else await db.collection('attendance').doc(ex.docs[0].id).update(data);
   renderAttendanceTab();
 };
 
-// ─────────────────────────────────────────────────────────
-//  MATERIALES (teacher)
-// ─────────────────────────────────────────────────────────
-$('f-add').onclick = async () => {
-  const title=$('f-title').value.trim(), url=$('f-url').value.trim(), desc=$('f-desc').value.trim(), cid=$('f-course').value;
-  if(!title||!url){ alert('Completá título y enlace.'); return; }
-  await db.collection('files').add({ title,url,desc,courseId:cid,createdAt:firebase.firestore.FieldValue.serverTimestamp() });
-  $('f-title').value=''; $('f-url').value=''; $('f-desc').value='';
-  renderFilesTab();
+$('f-add').onclick=async()=>{
+  const title=$('f-title').value.trim(),url=$('f-url').value.trim(),desc=$('f-desc').value.trim(),cid=$('f-course').value;
+  if(!title||!url){alert('Completá título y enlace.');return;}
+  await db.collection('files').add({title,url,desc,courseId:cid,createdAt:firebase.firestore.FieldValue.serverTimestamp()});
+  $('f-title').value='';$('f-url').value='';$('f-desc').value='';renderFilesTab();
 };
-
 async function renderFilesTab(){
-  const snap = await db.collection('files').orderBy('createdAt','desc').get();
-  const files = snap.docs.map(d=>({id:d.id,...d.data()}));
-  const wrap = $('files-list');
-  if(!files.length){ wrap.innerHTML='<p style="color:var(--muted);text-align:center;padding:40px">Aún no publicaste materiales.</p>'; return; }
-  const byCourse = {};
-  files.forEach(f=>{ (byCourse[f.courseId]||(byCourse[f.courseId]=[])).push(f); });
-  wrap.innerHTML = courses.map(c=>{
-    const cf=byCourse[c.id]||[];
-    if(!cf.length) return '';
-    return `<h4 style="color:var(--blue);margin:20px 0 10px">📚 ${c.name}</h4>`
-      +cf.map(f=>`<div class="card" style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;gap:12px">
-        <div style="flex:1;min-width:0">
-          <a href="${f.url}" target="_blank" style="color:var(--blue);font-weight:700;font-size:14px;text-decoration:none">📎 ${f.title}</a>
+  const snap=await db.collection('files').orderBy('createdAt','desc').get();
+  const files=snap.docs.map(d=>({id:d.id,...d.data()}));
+  const wrap=$('files-list');
+  if(!files.length){wrap.innerHTML='<p style="color:var(--muted);text-align:center;padding:40px">Aún no publicaste materiales.</p>';return;}
+  const byCourse={};files.forEach(f=>{(byCourse[f.courseId]||(byCourse[f.courseId]=[])).push(f);});
+  wrap.innerHTML=courses.map(c=>{
+    const cf=byCourse[c.id]||[];if(!cf.length) return '';
+    return `<h4 style="color:var(--blue);margin:20px 0 10px">📚 ${c.name}</h4>`+cf.map(f=>`
+      <div class="card" style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;gap:12px">
+        <div style="flex:1;min-width:0"><a href="${f.url}" target="_blank" style="color:var(--blue);font-weight:700;font-size:14px;text-decoration:none">📎 ${f.title}</a>
           ${f.desc?`<div style="font-size:12px;color:var(--muted);margin-top:2px">${f.desc}</div>`:''}
-          <div style="font-size:11px;color:var(--muted);margin-top:2px">${fmtDT(f.createdAt)}</div>
-        </div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px">${fmtDT(f.createdAt)}</div></div>
         <button class="btn btn-sm btn-red" onclick="deleteFile('${f.id}')">🗑️</button>
       </div>`).join('');
   }).join('');
 }
+window.deleteFile=async id=>{if(confirm('¿Eliminar?')){await db.collection('files').doc(id).delete();renderFilesTab();}};
 
-window.deleteFile = async id => { if(confirm('¿Eliminar este material?')){ await db.collection('files').doc(id).delete(); renderFilesTab(); } };
-
-// ─────────────────────────────────────────────────────────
-//  ALUMNOS (teacher)
-// ─────────────────────────────────────────────────────────
-$('s-add').onclick = async () => {
-  const name=$('s-name').value.trim(), email=$('s-email').value.trim(), pass=$('s-pass').value, cid=$('s-course').value;
-  const errEl=$('s-add-err');
-  errEl.classList.add('hidden');
-  if(!name||!email||!pass){ errEl.textContent='Completá todos los campos.'; errEl.classList.remove('hidden'); return; }
-  try {
-    // Create auth user
-    const cred = await auth.createUserWithEmailAndPassword(email,pass);
-    await db.collection('users').doc(cred.user.uid).set({ uid:cred.user.uid, email, name, role:'student', courseId:cid });
-    // Re-sign teacher in (creating user changes auth state)
-    // Firebase doesn't support this cleanly without Admin SDK — workaround: store teacher pass
-    // For simplicity we sign teacher back in manually
-    alert(`✅ Alumno ${name} creado.\n⚠️ Nota: Firebase cerró tu sesión temporalmente. Por favor volvé a iniciar sesión como docente.`);
-    await auth.signOut();
-  } catch(e){
-    errEl.textContent = e.code==='auth/email-already-in-use' ? 'Ese email ya está registrado.' : e.message;
-    errEl.classList.remove('hidden');
-  }
+$('s-add').onclick=async()=>{
+  const name=$('s-name').value.trim(),email=$('s-email').value.trim().toLowerCase(),cid=$('s-course').value;
+  const errEl=$('s-add-err');errEl.classList.add('hidden');
+  if(!name||!email){errEl.textContent='Completá nombre y Gmail.';errEl.classList.remove('hidden');return;}
+  if(!email.includes('@')){errEl.textContent='Ingresá un Gmail válido.';errEl.classList.remove('hidden');return;}
+  const ex=await db.collection('registeredStudents').where('email','==',email).limit(1).get();
+  if(!ex.empty){errEl.textContent='Ese Gmail ya está registrado.';errEl.classList.remove('hidden');return;}
+  await db.collection('registeredStudents').add({name,email,courseId:cid,createdAt:firebase.firestore.FieldValue.serverTimestamp()});
+  const uSnap=await db.collection('users').where('email','==',email).limit(1).get();
+  if(!uSnap.empty) await db.collection('users').doc(uSnap.docs[0].id).update({courseId:cid});
+  $('s-name').value='';$('s-email').value='';renderStudentsTab();
 };
 
 async function renderStudentsTab(){
-  await loadAllUsers();
-  const students = allUsers.filter(u=>u.role==='student');
-  const wrap = $('students-list');
-  const byCourse = {};
-  students.forEach(s=>{ (byCourse[s.courseId]||(byCourse[s.courseId]=[])).push(s); });
-  wrap.innerHTML = courses.map(c=>{
+  const snap=await db.collection('registeredStudents').orderBy('createdAt','asc').get();
+  const regs=snap.docs.map(d=>({id:d.id,...d.data()}));
+  const wrap=$('students-list');
+  const byCourse={};regs.forEach(r=>{(byCourse[r.courseId]||(byCourse[r.courseId]=[])).push(r);});
+  wrap.innerHTML=courses.map(c=>{
     const cs=byCourse[c.id]||[];
     return `<h4 style="color:var(--blue);margin:20px 0 10px">📚 ${c.name} <span style="color:var(--muted);font-weight:400">(${cs.length} alumnos)</span></h4>`
-      +(cs.length?`<div class="card"><table>
-        <thead><tr><th>Nombre</th><th>Email</th><th style="text-align:center">Acción</th></tr></thead>
-        <tbody>${cs.map(s=>`<tr>
-          <td><strong>${s.name}</strong></td>
-          <td style="color:var(--muted)">${s.email}</td>
-          <td style="text-align:center"><button class="btn btn-sm" style="background:#e9ecef;color:#495057" onclick="moveCourse('${s.uid||s.id}')">Cambiar curso</button></td>
-        </tr>`).join('')}</tbody>
-      </table></div>`
+      +(cs.length?`<div class="card"><table><thead><tr><th>Nombre</th><th>Gmail</th><th style="text-align:center">Acción</th></tr></thead><tbody>
+        ${cs.map(s=>`<tr><td><strong>${s.name}</strong></td><td style="color:var(--muted)">${s.email}</td>
+          <td style="text-align:center">
+            <button class="btn btn-sm" style="background:#e9ecef;color:#495057;margin-right:4px" onclick="moveCourse('${s.id}','${s.name.replace(/'/g,"\\'")}')">Cambiar curso</button>
+            <button class="btn btn-sm btn-red" onclick="removeStudent('${s.id}','${s.name.replace(/'/g,"\\'")}')">Quitar</button>
+          </td></tr>`).join('')}
+      </tbody></table></div>`
       :`<div class="card" style="color:var(--muted);font-size:13px">Sin alumnos.</div>`);
   }).join('');
 }
-
-window.moveCourse = async uid => {
-  const opts = courses.map((c,i)=>`${i+1}. ${c.name}`).join('\n');
-  const idx = prompt(`¿A qué curso mover al alumno?\n${opts}\n\nEscribí el número:`);
-  if(!idx) return;
-  const c = courses[parseInt(idx)-1];
-  if(!c){ alert('Opción inválida'); return; }
-  await db.collection('users').doc(uid).update({courseId:c.id});
-  await loadAllUsers();
+window.moveCourse=async(id,name)=>{
+  const opts=courses.map((c,i)=>`${i+1}. ${c.name}`).join('\n');
+  const idx=prompt(`Mover a ${name} a:\n${opts}\n\nNúmero:`);if(!idx)return;
+  const c=courses[parseInt(idx)-1];if(!c){alert('Inválido');return;}
+  await db.collection('registeredStudents').doc(id).update({courseId:c.id});
+  const snap=await db.collection('registeredStudents').doc(id).get();
+  const uSnap=await db.collection('users').where('email','==',snap.data().email).limit(1).get();
+  if(!uSnap.empty) await db.collection('users').doc(uSnap.docs[0].id).update({courseId:c.id});
   renderStudentsTab();
 };
-
-// ─────────────────────────────────────────────────────────
-//  HISTORIAL (teacher)
-// ─────────────────────────────────────────────────────────
-$('h-search').oninput = renderHistoryTab;
-
-async function renderHistoryTab(){
-  const q = $('h-search').value.toLowerCase();
-  const snap = await db.collection('loginHistory').orderBy('timestamp','desc').limit(200).get();
-  let rows = snap.docs.map(d=>d.data());
-  if(q) rows = rows.filter(r=>r.name?.toLowerCase().includes(q)||r.email?.toLowerCase().includes(q));
-  const wrap = $('history-table');
-  if(!rows.length){ wrap.innerHTML='<p style="color:var(--muted);text-align:center;padding:24px">Sin registros.</p>'; return; }
-  const cMap = {}; courses.forEach(c=>cMap[c.id]=c.name);
-  wrap.innerHTML = `<table>
-    <thead><tr><th>Nombre</th><th>Email</th><th>Rol</th><th>Curso</th><th>Fecha y Hora</th></tr></thead>
-    <tbody>${rows.map((h,i)=>`<tr style="background:${i%2===0?'#fff':'var(--gray)'}">
-      <td><strong>${h.name||'—'}</strong></td>
-      <td style="color:var(--muted)">${h.email}</td>
-      <td><span class="pill ${h.role==='teacher'?'pill-blue':'pill-teal'}">${h.role==='teacher'?'Docente':'Alumno'}</span></td>
-      <td>${cMap[h.courseId]||'—'}</td>
-      <td>${fmtDT(h.timestamp)}</td>
-    </tr>`).join('')}</tbody>
-  </table>`;
-}
-
-// ─────────────────────────────────────────────────────────
-//  CURSOS (teacher)
-// ─────────────────────────────────────────────────────────
-$('nc-add').onclick = async () => {
-  const name=$('nc-name').value.trim();
-  if(!name){ alert('Escribí un nombre para el curso.'); return; }
-  await db.collection('courses').add({name,createdAt:firebase.firestore.FieldValue.serverTimestamp()});
-  $('nc-name').value='';
-  await loadCourses();
-  populateCourseSelects();
-  renderCoursesTab();
+window.removeStudent=async(id,name)=>{
+  if(!confirm(`¿Quitar a ${name}? Ya no podrá ingresar.`))return;
+  await db.collection('registeredStudents').doc(id).delete();renderStudentsTab();
 };
 
+$('h-search').oninput=renderHistoryTab;
+async function renderHistoryTab(){
+  const q=$('h-search').value.toLowerCase();
+  const snap=await db.collection('loginHistory').orderBy('timestamp','desc').limit(200).get();
+  let rows=snap.docs.map(d=>d.data());
+  if(q) rows=rows.filter(r=>r.name?.toLowerCase().includes(q)||r.email?.toLowerCase().includes(q));
+  const wrap=$('history-table');
+  if(!rows.length){wrap.innerHTML='<p style="color:var(--muted);text-align:center;padding:24px">Sin registros.</p>';return;}
+  const cMap={};courses.forEach(c=>cMap[c.id]=c.name);
+  wrap.innerHTML=`<table><thead><tr><th>Nombre</th><th>Gmail</th><th>Rol</th><th>Curso</th><th>Fecha y Hora</th></tr></thead><tbody>
+  ${rows.map((h,i)=>{
+    const av=h.photoURL?`<img src="${h.photoURL}" style="width:22px;height:22px;border-radius:50%;vertical-align:middle;margin-right:6px"/>`:''
+    return `<tr style="background:${i%2===0?'#fff':'var(--gray)'}">
+      <td>${av}<strong>${h.name||'—'}</strong></td>
+      <td style="color:var(--muted);font-size:12px">${h.email}</td>
+      <td><span class="pill ${h.role==='teacher'?'pill-blue':'pill-teal'}">${h.role==='teacher'?'Docente':'Alumno'}</span></td>
+      <td style="font-size:12px">${cMap[h.courseId]||'—'}</td>
+      <td style="font-size:12px">${fmtDT(h.timestamp)}</td></tr>`;
+  }).join('')}</tbody></table>`;
+}
+
+$('nc-add').onclick=async()=>{
+  const name=$('nc-name').value.trim();if(!name){alert('Escribí un nombre.');return;}
+  await db.collection('courses').add({name,createdAt:firebase.firestore.FieldValue.serverTimestamp()});
+  $('nc-name').value='';await loadCourses();populateCourseSelects();renderCoursesTab();
+};
 async function renderCoursesTab(){
-  const wrap=$('courses-list');
-  wrap.innerHTML = courses.map(c=>`
-    <div class="card" style="display:flex;align-items:center;gap:12px;padding:14px 18px" id="course-row-${c.id}">
+  const regSnap=await db.collection('registeredStudents').get();
+  const regs=regSnap.docs.map(d=>d.data());
+  $('courses-list').innerHTML=courses.map(c=>`
+    <div class="card" style="display:flex;align-items:center;gap:12px;padding:14px 18px">
       <span style="font-size:22px">📚</span>
       <div id="course-view-${c.id}" style="flex:1;display:flex;align-items:center;gap:12px">
         <span style="flex:1;font-weight:700;font-size:15px">${c.name}</span>
-        <span style="font-size:13px;color:var(--muted)">${allUsers.filter(u=>u.role==='student'&&u.courseId===c.id).length} alumnos</span>
+        <span style="font-size:13px;color:var(--muted)">${regs.filter(r=>r.courseId===c.id).length} alumnos</span>
         <button class="btn btn-sm btn-blue" onclick="editCourse('${c.id}','${c.name.replace(/'/g,"\\'")}')">✏️ Editar</button>
       </div>
       <div id="course-edit-${c.id}" style="flex:1;display:none;align-items:center;gap:8px">
@@ -616,62 +520,43 @@ async function renderCoursesTab(){
       </div>
     </div>`).join('');
 }
+window.editCourse=(id,name)=>{ $('course-view-'+id).style.display='none'; $('course-edit-'+id).style.display='flex'; $('course-inp-'+id).value=name; };
+window.cancelEditCourse=id=>{ $('course-view-'+id).style.display='flex'; $('course-edit-'+id).style.display='none'; };
+window.saveCourse=async id=>{ const n=$('course-inp-'+id).value.trim();if(!n)return;await db.collection('courses').doc(id).update({name:n});await loadCourses();populateCourseSelects();renderCoursesTab(); };
 
-window.editCourse = (id,name) => {
-  $('course-view-'+id).style.display='none';
-  const ed=$('course-edit-'+id); ed.style.display='flex';
-  $('course-inp-'+id).value=name;
-};
-window.cancelEditCourse = id => { $('course-view-'+id).style.display='flex'; $('course-edit-'+id).style.display='none'; };
-window.saveCourse = async id => {
-  const name=$('course-inp-'+id).value.trim();
-  if(!name) return;
-  await db.collection('courses').doc(id).update({name});
-  await loadCourses();
-  populateCourseSelects();
-  renderCoursesTab();
-};
-
-// ═══════════════════════════════════════════════════════════
-// ═══════════════════════════════════════════════════════════
-//  STUDENT
-// ═══════════════════════════════════════════════════════════
-// ═══════════════════════════════════════════════════════════
+// ══════════════════════════════════════
+// STUDENT
+// ══════════════════════════════════════
 async function initStudent(){
-  show('view-student');
-  await loadCourses();
-  const course = courses.find(c=>c.id===userDoc.courseId);
-  $('s-nav-name').textContent = '— '+userDoc.name;
-  $('s-nav-course').textContent = course ? '| '+course.name : '';
-  $('s-att-title').textContent = 'Mi Asistencia' + (course?' — '+course.name:'');
-  $('s-today-date').textContent = fmtD(todayStr());
-  setupStudentTabs();
-  renderStudentAttendance();
+  show('view-student');await loadCourses();
+  const course=courses.find(c=>c.id===userDoc.courseId);
+  const av=currentUser.photoURL?`<img src="${currentUser.photoURL}" style="width:28px;height:28px;border-radius:50%;border:2px solid rgba(255,255,255,.4);vertical-align:middle;margin-right:6px"/>`:''
+  $('s-nav-name').innerHTML=av+'— '+(userDoc.name||userDoc.email);
+  $('s-nav-course').textContent=course?'| '+course.name:'';
+  $('s-att-title').textContent='Mi Asistencia'+(course?' — '+course.name:'');
+  $('s-today-date').textContent=fmtD(todayStr());
+  setupStudentTabs();renderStudentAttendance();
 }
 
 function setupStudentTabs(){
   $('s-tabs').querySelectorAll('.tab-btn').forEach(btn=>{
-    btn.onclick = () => {
+    btn.onclick=()=>{
       $('s-tabs').querySelectorAll('.tab-btn').forEach(b=>{b.style.color='var(--muted)';b.style.borderBottomColor='transparent';});
-      btn.style.color='var(--teal)'; btn.style.borderBottomColor='var(--teal)';
+      btn.style.color='var(--teal)';btn.style.borderBottomColor='var(--teal)';
       ['asistencia','materiales','historial'].forEach(t=>$('s-tab-'+t).classList.add('hidden'));
-      const tab=btn.dataset.tab;
-      $('s-tab-'+tab).classList.remove('hidden');
-      if(tab==='materiales') renderStudentFiles();
-      if(tab==='historial')  renderStudentHistory();
+      const tab=btn.dataset.tab;$('s-tab-'+tab).classList.remove('hidden');
+      if(tab==='materiales')renderStudentFiles();
+      if(tab==='historial')renderStudentHistory();
     };
   });
 }
 
 async function renderStudentAttendance(){
-  const uid = userDoc.uid || currentUser.uid;
-  const cid = userDoc.courseId;
-  const snap = await db.collection('attendance').where('studentId','==',uid).where('courseId','==',cid).orderBy('date','desc').get();
-  const all = snap.docs.map(d=>({id:d.id,...d.data()}));
-  const todayAtt = all.find(a=>a.date===todayStr());
-
-  // Today button
-  const todayDiv = $('s-att-today');
+  const uid=userDoc.uid||currentUser.uid, cid=userDoc.courseId;
+  const snap=await db.collection('attendance').where('studentId','==',uid).where('courseId','==',cid).orderBy('date','desc').get();
+  const all=snap.docs.map(d=>({id:d.id,...d.data()}));
+  const todayAtt=all.find(a=>a.date===todayStr());
+  const todayDiv=$('s-att-today');
   if(todayAtt){
     const c=todayAtt.status==='present'?'var(--green)':todayAtt.status==='late'?'var(--orange)':'var(--red)';
     const l=todayAtt.status==='present'?'✅ Presente':todayAtt.status==='late'?'⏰ Tarde':'❌ Ausente';
@@ -680,63 +565,48 @@ async function renderStudentAttendance(){
   } else {
     todayDiv.innerHTML=`<button class="btn btn-teal" style="padding:12px 36px;font-size:15px" onclick="studentMarkPresent()">Marcar mi asistencia ✅</button>`;
   }
-
-  // Stats
-  const pr=all.filter(a=>a.status==='present').length;
-  const lt=all.filter(a=>a.status==='late').length;
-  const ab=all.filter(a=>a.status==='absent').length;
-  const total=pr+lt+ab;
+  const pr=all.filter(a=>a.status==='present').length, lt=all.filter(a=>a.status==='late').length, ab=all.filter(a=>a.status==='absent').length, total=pr+lt+ab;
   const pct=total?Math.round(((pr+lt)/total)*100):null;
   $('s-stats').innerHTML=`
-    <div class="stat-card"><div class="emoji">✅</div><div class="value" style="color:var(--green)">${pr}</div><div class="label">Presentes</div></div>
-    <div class="stat-card"><div class="emoji">⏰</div><div class="value" style="color:var(--orange)">${lt}</div><div class="label">Tardes</div></div>
-    <div class="stat-card"><div class="emoji">❌</div><div class="value" style="color:var(--red)">${ab}</div><div class="label">Ausentes</div></div>`;
-  $('s-pct-card').innerHTML = pct!==null ? `<div class="card" style="text-align:center;padding:14px">Asistencia total: <strong style="color:${pct>=75?'var(--green)':'var(--red)'};font-size:18px">${pct}%</strong> (${pr+lt} de ${total} clases)</div>` : '';
-
-  // Detail table
+    <div class="stat-card"><div style="font-size:28px">✅</div><div style="font-size:28px;font-weight:700;color:var(--green)">${pr}</div><div style="font-size:12px;color:var(--muted)">Presentes</div></div>
+    <div class="stat-card"><div style="font-size:28px">⏰</div><div style="font-size:28px;font-weight:700;color:var(--orange)">${lt}</div><div style="font-size:12px;color:var(--muted)">Tardes</div></div>
+    <div class="stat-card"><div style="font-size:28px">❌</div><div style="font-size:28px;font-weight:700;color:var(--red)">${ab}</div><div style="font-size:12px;color:var(--muted)">Ausentes</div></div>`;
+  $('s-pct-card').innerHTML=pct!==null?`<div class="card" style="text-align:center;padding:14px">Asistencia: <strong style="color:${pct>=75?'var(--green)':'var(--red)'};font-size:18px">${pct}%</strong> (${pr+lt} de ${total} clases)</div>`:'';
   const detail=$('s-att-detail');
-  if(!all.length){ detail.innerHTML='<p style="color:var(--muted);text-align:center;padding:24px">Sin registros aún.</p>'; return; }
-  detail.innerHTML=`<table>
-    <thead><tr><th>Fecha</th><th>Estado</th><th>Registrado por</th></tr></thead>
-    <tbody>${all.map(a=>{
-      const c=a.status==='present'?'var(--green)':a.status==='late'?'var(--orange)':'var(--red)';
-      const l=a.status==='present'?'✅ Presente':a.status==='late'?'⏰ Tarde':'❌ Ausente';
-      return `<tr><td>${fmtD(a.date)}</td><td><span style="color:${c};font-weight:600">${l}</span></td><td style="color:var(--muted)">${a.markedBy==='student'?'Yo':'Docente'}</td></tr>`;
-    }).join('')}</tbody>
-  </table>`;
+  if(!all.length){detail.innerHTML='<p style="color:var(--muted);text-align:center;padding:24px">Sin registros aún.</p>';return;}
+  detail.innerHTML=`<table><thead><tr><th>Fecha</th><th>Estado</th><th>Registrado por</th></tr></thead><tbody>
+  ${all.map(a=>{const c=a.status==='present'?'var(--green)':a.status==='late'?'var(--orange)':'var(--red)';const l=a.status==='present'?'✅ Presente':a.status==='late'?'⏰ Tarde':'❌ Ausente';
+    return `<tr><td>${fmtD(a.date)}</td><td><span style="color:${c};font-weight:600">${l}</span></td><td style="color:var(--muted)">${a.markedBy==='student'?'Yo':'Docente'}</td></tr>`;
+  }).join('')}</tbody></table>`;
 }
 
-window.studentMarkPresent = async () => {
-  const uid = userDoc.uid || currentUser.uid;
-  const existing = await db.collection('attendance').where('studentId','==',uid).where('courseId','==',userDoc.courseId).where('date','==',todayStr()).get();
-  if(!existing.empty) return;
-  await db.collection('attendance').add({ studentId:uid, courseId:userDoc.courseId, date:todayStr(), status:'present', markedBy:'student', timestamp:firebase.firestore.FieldValue.serverTimestamp() });
+window.studentMarkPresent=async()=>{
+  const uid=userDoc.uid||currentUser.uid;
+  const ex=await db.collection('attendance').where('studentId','==',uid).where('courseId','==',userDoc.courseId).where('date','==',todayStr()).get();
+  if(!ex.empty)return;
+  await db.collection('attendance').add({studentId:uid,courseId:userDoc.courseId,date:todayStr(),status:'present',markedBy:'student',timestamp:firebase.firestore.FieldValue.serverTimestamp()});
   renderStudentAttendance();
 };
 
 async function renderStudentFiles(){
-  const snap = await db.collection('files').where('courseId','==',userDoc.courseId).orderBy('createdAt','desc').get();
-  const files = snap.docs.map(d=>d.data());
-  const wrap = $('s-files-list');
-  if(!files.length){ wrap.innerHTML='<div class="card" style="text-align:center;padding:48px;color:var(--muted)"><div style="font-size:48px;margin-bottom:12px">📭</div><p>Tu docente aún no publicó materiales.</p></div>'; return; }
-  wrap.innerHTML=files.map(f=>`<div class="card">
-    <a href="${f.url}" target="_blank" style="color:var(--blue);font-weight:700;font-size:15px;text-decoration:none">📎 ${f.title}</a>
+  const snap=await db.collection('files').where('courseId','==',userDoc.courseId).orderBy('createdAt','desc').get();
+  const files=snap.docs.map(d=>d.data());const wrap=$('s-files-list');
+  if(!files.length){wrap.innerHTML='<div class="card" style="text-align:center;padding:48px;color:var(--muted)"><div style="font-size:48px;margin-bottom:12px">📭</div><p>Tu docente aún no publicó materiales.</p></div>';return;}
+  wrap.innerHTML=files.map(f=>`<div class="card"><a href="${f.url}" target="_blank" style="color:var(--blue);font-weight:700;font-size:15px;text-decoration:none">📎 ${f.title}</a>
     ${f.desc?`<p style="color:var(--muted);font-size:13px;margin:6px 0 0">${f.desc}</p>`:''}
-    <p style="color:var(--muted);font-size:11px;margin-top:4px">Publicado el ${fmtDT(f.createdAt)}</p>
-  </div>`).join('');
+    <p style="color:var(--muted);font-size:11px;margin-top:4px">Publicado el ${fmtDT(f.createdAt)}</p></div>`).join('');
 }
 
 async function renderStudentHistory(){
-  const uid = userDoc.uid || currentUser.uid;
-  const snap = await db.collection('loginHistory').where('userId','==',uid).orderBy('timestamp','desc').get();
-  const rows = snap.docs.map(d=>d.data());
-  const wrap = $('s-history-table');
-  if(!rows.length){ wrap.innerHTML='<p style="color:var(--muted);text-align:center;padding:24px">Sin registros aún.</p>'; return; }
-  wrap.innerHTML=`<table>
-    <thead><tr><th>#</th><th>Fecha y Hora de acceso</th></tr></thead>
-    <tbody>${rows.map((h,i)=>`<tr style="background:${i%2===0?'#fff':'var(--gray)'}"><td style="color:var(--muted);width:40px">${rows.length-i}</td><td>${fmtDT(h.timestamp)}</td></tr>`).join('')}</tbody>
-  </table>`;
+  const uid=userDoc.uid||currentUser.uid;
+  const snap=await db.collection('loginHistory').where('userId','==',uid).orderBy('timestamp','desc').get();
+  const rows=snap.docs.map(d=>d.data());const wrap=$('s-history-table');
+  if(!rows.length){wrap.innerHTML='<p style="color:var(--muted);text-align:center;padding:24px">Sin registros aún.</p>';return;}
+  wrap.innerHTML=`<table><thead><tr><th>#</th><th>Fecha y Hora de acceso</th></tr></thead><tbody>
+  ${rows.map((h,i)=>`<tr style="background:${i%2===0?'#fff':'var(--gray)'}"><td style="color:var(--muted);width:40px">${rows.length-i}</td><td>${fmtDT(h.timestamp)}</td></tr>`).join('')}
+  </tbody></table>`;
 }
 </script>
 </body>
 </html>
+
