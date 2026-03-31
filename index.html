@@ -254,6 +254,10 @@ const auth = firebase.auth();
 const db   = firebase.firestore();
 const googleProvider = new firebase.auth.GoogleAuthProvider();
 
+auth.getRedirectResult().then(result => {
+  if(result && result.user) console.log("Redirect login OK");
+}).catch(e => { if(e.code !== "auth/no-auth-event") console.error("Redirect error:", e); });
+
 const $ = id => document.getElementById(id);
 const todayStr = () => new Date().toISOString().split("T")[0];
 const fmtDT = ts => { if(!ts) return "—"; const d=ts.toDate?ts.toDate():new Date(ts); return d.toLocaleString("es-AR",{dateStyle:"short",timeStyle:"short"}); };
@@ -302,7 +306,7 @@ auth.onAuthStateChanged(async user => {
 // ── LOGIN ──
 $('btn-google-login').onclick = async () => {
   const errEl=$('google-err'); errEl.classList.add('hidden');
-  try { await auth.signInWithPopup(googleProvider); }
+  try { await auth.signInWithRedirect(googleProvider); }
   catch(e){ if(e.code!=='auth/popup-closed-by-user'){ errEl.textContent="Error Google: "+e.message; errEl.classList.remove('hidden'); } }
 };
 $('login-btn').onclick = loginLocal;
