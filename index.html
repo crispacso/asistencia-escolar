@@ -253,10 +253,10 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db   = firebase.firestore();
 const googleProvider = new firebase.auth.GoogleAuthProvider();
+googleProvider.setCustomParameters({ prompt: 'select_account' });
+auth.settings = auth.settings || {};
 
-auth.getRedirectResult().then(result => {
-  if(result && result.user) console.log("Redirect login OK");
-}).catch(e => { if(e.code !== "auth/no-auth-event") console.error("Redirect error:", e); });
+
 
 const $ = id => document.getElementById(id);
 const todayStr = () => new Date().toISOString().split("T")[0];
@@ -306,7 +306,7 @@ auth.onAuthStateChanged(async user => {
 // ── LOGIN ──
 $('btn-google-login').onclick = async () => {
   const errEl=$('google-err'); errEl.classList.add('hidden');
-  try { await auth.signInWithRedirect(googleProvider); }
+  try { await auth.signInWithPopup(googleProvider); }
   catch(e){ if(e.code!=='auth/popup-closed-by-user'){ errEl.textContent="Error Google: "+e.message; errEl.classList.remove('hidden'); } }
 };
 $('login-btn').onclick = loginLocal;
@@ -613,4 +613,5 @@ async function renderStudentHistory(){
 </script>
 </body>
 </html>
+
 
